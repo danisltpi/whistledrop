@@ -1,8 +1,6 @@
 import os
 from dotenv import load_dotenv
 import requests
-import socks
-import socket
 
 load_dotenv()
 tor_url = os.getenv("TOR_URL")
@@ -18,7 +16,7 @@ def upload_file(file_path):
     with open(file_path, 'rb') as file:
         files = {'file': file}
 
-        response = requests.post(tor_url, files=files, proxies=proxies)
+        response = requests.post(url, files=files, proxies=proxies)
 
     if response.status_code == 200:
         data = response.json()
